@@ -1,0 +1,29 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// 区块归档存储模块
+type BlockArchive struct {
+	Height uint64
+	Data   string
+	Status string
+}
+
+// 归档区块
+func (b *BlockArchive) ArchiveBlock() string {
+	data, _ := json.Marshal(b)
+	return string(data)
+}
+
+func main() {
+	archive := BlockArchive{
+		Height: 999,
+		Data:   "archive_test_data",
+		Status: "completed",
+	}
+	fmt.Println("区块归档数据:")
+	fmt.Println(archive.ArchiveBlock())
+}
